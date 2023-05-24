@@ -1,0 +1,75 @@
+package techproed.utilities;
+
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.time.Duration;
+
+/*
+    Driver class'indaki mantik extends yontemi ile degil yani TestBase class'ina extend etmek yerine
+    Driver classindan static methodlar kullanarak druver olustururuz.Statik oldugu icin class ismi ile
+    heryerden methoda ulasabilecegiz.
+ */
+public class Driver {
+
+    static WebDriver driver;
+
+    public static WebDriver getDriver() {
+        /*
+        Driver'i her cagirdiginda yeni bir pencere acilmasinin onune gecmek icin
+        if blogu icinde Eger driver'a deger atanmamissa deger ata, Eger deger atanmissa Driver'i ayni sayfada Return et.
+        Bunun icin sadece yapmamiz gerek if(driver== nul)kullanmaktir.
+         */
+/*
+    Singleton Pattern: Tekli kullanım kalıbı.
+        Bir class'tan obje oluşturulmasının önüne geçilmesi için kullanılan ifade
+        Bir class'tan obje oluşturmanın önüne geçmek için default constructor'ın kullanımını engellemek için
+    private access modifire kullanarak bir constructor oluştururuz
+     */
+
+        if (driver == null) {
+
+            switch (ConfigReader.getProperty("browser")) {
+                case "chrome" -> {
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+                }
+                case "chrome-headless" -> {
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
+                }
+                case "firefox" -> {
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                }
+                case "edge" -> {
+                    WebDriverManager.edgedriver().setup();
+                    driver = new EdgeDriver();
+                }
+            }
+        }
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().window().maximize();
+        return driver;
+    }
+
+    public static void closeDriver() {
+        if (driver != null) {//if driver is pointing anywhere
+            driver.close();//quit when I call closeDriver
+            driver = null;//make the driver null so when we call getDriver, we can open the driver again
+        }
+    }
+
+    public static void quitDriver() {
+        if (driver != null) {//if driver is pointing anywhere
+            driver.quit();//quit when I call closeDriver
+            driver = null;//make the driver null so when we call getDriver, we can open the driver again
+        }
+
+    }
+}
