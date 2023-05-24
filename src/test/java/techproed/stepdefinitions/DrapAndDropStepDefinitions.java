@@ -25,7 +25,7 @@ public class DrapAndDropStepDefinitions {
 
 }
 
-    @Given("a_elementini_b_elementi_yerine_getirir")
+    @And("a_elementini_b_elementi_yerine_getirir")
     public void a_elementini_b_elementi_yerine_getirir() throws AWTException {
         Actions action=new Actions(Driver.getDriver());
         //action.dragAndDrop(locate.elementA, locate.elementB).perform();
@@ -84,11 +84,7 @@ public class DrapAndDropStepDefinitions {
 
     }
 
-    @Given("b_elementinin_a_elementi_yerinde_olduğunu_test_eder")
-    public void b_elementinin_a_elementi_yerinde_olduğunu_test_eder() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
+
 
     @And("dragAndDrop_linkine_tıklar")
     public void draganddrop_linkine_tıklar() {

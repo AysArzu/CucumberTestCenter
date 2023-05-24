@@ -12,8 +12,19 @@ public class LocateMali {
 
     @FindBy(xpath = "//a[text()=\"Drag and Drop\"]")
     public WebElement dragAndDrop;
+    @FindBy(xpath = "//a[text()=\"Drag and Drop Circles\"]")
+    public WebElement dragAndDropCirceles;
     @FindBy(id = "column-a")
     public WebElement elementA;
     @FindBy(id = "column-b")
     public WebElement elementB;
+    @FindBy(id = "draggable")
+    public WebElement elementCircle;
+    @FindBy(id = "droptarget")
+    public WebElement elementCircleTarget;
+    @FindBy(xpath = "//div[text()=\"You did great!\"]")
+    public WebElement circlesText;
+
+
+
 }
