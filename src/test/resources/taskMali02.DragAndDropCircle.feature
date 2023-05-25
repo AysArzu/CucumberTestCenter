@@ -6,4 +6,3 @@ Feature: US002 Drag and Drop Circle Test
     Then yer_değişikliğini_kontrol_eder
 
 
-
