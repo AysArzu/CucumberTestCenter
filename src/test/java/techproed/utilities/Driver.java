@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
@@ -32,44 +33,44 @@ public class Driver {
     private access modifire kullanarak bir constructor oluştururuz
      */
 
+      /*
+            Driver'i her çağırdığında yeni bir pencere açılmasının önüne geçmek için
+        if bloğu içinde Eğer driver'a değer atanmamışsa(driver doluysa) değer ata, Eğer değer atanmışsa Driver'i aynı
+        sayfada RETURN et. Bunun sadece yapmamız gereken if(driver==null) kullanmak
+         */
         if (driver == null) {
-
             switch (ConfigReader.getProperty("browser")) {
-                case "chrome" -> {
+                case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                }
-                case "chrome-headless" -> {
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
-                }
-                case "firefox" -> {
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                }
-                case "edge" -> {
+                    driver = new ChromeDriver(new ChromeOptions().addArguments("--remote-allow-origins=*"));
+                    break;
+                case "edge":
                     WebDriverManager.edgedriver().setup();
-                    driver = new EdgeDriver();
-                }
+                    driver = new EdgeDriver(new EdgeOptions().addArguments("--remote-allow-origins=*"));
+                    break;
+                default:
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver(new ChromeOptions().addArguments("--remote-allow-origins=*"));
             }
+
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        driver.manage().window().maximize();
+
         return driver;
     }
 
     public static void closeDriver() {
-        if (driver != null) {//if driver is pointing anywhere
-            driver.close();//quit when I call closeDriver
-            driver = null;//make the driver null so when we call getDriver, we can open the driver again
+        if (driver != null) {//Driver'a değer atanmışşsa
+            driver.close();
+            driver = null;
         }
     }
 
     public static void quitDriver() {
-        if (driver != null) {//if driver is pointing anywhere
-            driver.quit();//quit when I call closeDriver
-            driver = null;//make the driver null so when we call getDriver, we can open the driver again
+        if (driver != null) {//Driver'a değer atanmışşsa
+            driver.quit();
+            driver = null;
         }
-
     }
 }
