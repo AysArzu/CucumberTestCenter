@@ -3,6 +3,7 @@ package techproed.utilities;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -238,6 +239,20 @@ public class ReusableMethods {
                 "simulateHTML5DragAndDrop(sourceElement, targetElement);";
         js.executeScript(script, source, target);
 
+    }
+
+    /**
+     * Bu metot Action class kullanarak bir webelementin ustune gidip bekler
+     * @param element yerine webelement'in locate koyulmalidir
+     */
+    public static void moveToElementWithAction(WebElement element){
+        Actions action = new Actions(Driver.getDriver());
+        action.moveToElement(element).perform();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
 
