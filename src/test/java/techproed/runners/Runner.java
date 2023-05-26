@@ -25,10 +25,10 @@ senaryoyu çalıştırabiliriz
         //rerun->fail olan senaryoları belirtilen yoldaki txt dosya içinde gösterir
         //plugin parametresi ile pretty ifadesi kullanılırsa konsolda scenario.lar ile ilgili bilgi gösterir
         features = "src/test/resources/features",
-        glue = {"techproed/stepDefinitions", "techproed/hooks"},
+        glue = {"techproed/stepdefinitions"},
         //Bu parametre ile kodlarımızı yazdığımız stepDefinition
         //class'ının packege'ını belirtiriz
-        tags = "@techpro1",
+        tags = "@disappear",
         dryRun = false,
         //dryRun=false Test adımlarını kontrol eder ve browser'ı çalıştırır
         //dryRun=True Test adımlarını sadece kontrol eder
