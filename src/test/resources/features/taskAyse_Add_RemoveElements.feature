@@ -24,3 +24,5 @@ Feature: US001 Add Remove Elements
     Then Challenging Dom linkine tiklar
     And 5 . edit e basar
     And 5 . deleteye basar
+    Then Kullanici sayfayi kapatir
+
