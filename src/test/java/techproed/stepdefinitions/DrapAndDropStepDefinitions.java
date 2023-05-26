@@ -98,4 +98,6 @@ public class DrapAndDropStepDefinitions {
     public void yer_degisikligini_kontrol_et() {
         Assert.assertEquals(locate.elementB.getText(),"A");
     }
+
+
 }
