@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+
 public class ReusableMethods {
-
-
 
 
     //HARD WAIT METHOD
@@ -116,10 +116,11 @@ public class ReusableMethods {
             throw new RuntimeException(e);
         }
     }
+
     //Tüm Sayfa ScreenShot parametreli
     public static void tumSayfaResmi(String name) {
         String tarih = new SimpleDateFormat("_hh_mm_ss_ddMMyyyy").format(new Date());
-        String dosyaYolu = "TestOutput/screenshot/screenshot" +tarih+name+ ".png";
+        String dosyaYolu = "TestOutput/screenshot/screenshot" + tarih + name + ".png";
         TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
         try {
             FileUtils.copyFile(ts.getScreenshotAs(OutputType.FILE), new File(dosyaYolu));
@@ -139,7 +140,6 @@ public class ReusableMethods {
             throw new RuntimeException(e);
         }
     }
-
 
 
     //WebTable
@@ -194,6 +194,7 @@ public class ReusableMethods {
         String attribute_Value = (String) js.executeScript("return document.getElementById('" + id + "')." + attributeName);
         System.out.println("Attribute Value: = " + attribute_Value);
     }
+
     //JS drag and drop
     public static void dragAndDropByJS(WebElement source, WebElement target) {
 
@@ -239,5 +240,14 @@ public class ReusableMethods {
         js.executeScript(script, source, target);
 
     }
-}
 
+    public static void selectFromList( String textFromList) {
+        Driver.getDriver().findElement(By.xpath("//div[@id='myCountryautocomplete-list']//div[.='" + textFromList + "']")).click();
+    }
+    public static void clickEdit(int sayi){
+        Driver.getDriver().findElement(By.xpath("(//a[@href='#edit'])["+sayi+"]"));
+    }
+    public static void clickDelete(int sayi){
+        Driver.getDriver().findElement(By.xpath("(//a[text()='delete'])["+sayi+"]"));
+    }
+}
