@@ -256,7 +256,6 @@ public class ReusableMethods {
             e.printStackTrace();
         }
     }
-}
 
 
     public static void selectFromList( String textFromList) {
