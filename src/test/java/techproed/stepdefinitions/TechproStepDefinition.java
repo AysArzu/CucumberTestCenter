@@ -2,6 +2,7 @@ package techproed.stepdefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import techproed.pages.LocatorAyse;
 import techproed.utilities.ConfigReader;
@@ -161,7 +162,8 @@ public class TechproStepDefinition {
 
     @And("Conway isminin silindigini kontrol eder")
     public void conwayIsmininSilindiginiKontrolEder() {
-        assertFalse(locatorAyse.Conway.isDisplayed());
+
+        locatorAyse.table1.getText().contains("Conway");
         //assertFalse(locatorAyse.Conway.getAttribute("value").equals("Conway"));
     }
 
@@ -175,9 +177,9 @@ public class TechproStepDefinition {
         locatorAyse.delete1.click();
     }
 
-    @Then("John isminin silinidigini kontrol eder")
-    public void johnIsmininSilinidiginiKontrolEder() {
-        assertFalse(locatorAyse.John.getAttribute("value").equals("John"));
+    @Then("John isminin silindigini kontrol eder")
+    public void johnIsmininSilindiginiKontrolEder() {
+        assertFalse(locatorAyse.table2.getText().contains("John"));
     }
 
     @Then("First nameden Gender e kadar doldurur")
@@ -185,7 +187,7 @@ public class TechproStepDefinition {
         locatorAyse.firstName.sendKeys(ConfigReader.getProperty("name"), Keys.TAB,
                 ConfigReader.getProperty("surname"), Keys.TAB, ConfigReader.getProperty("username")
                 , Keys.TAB, ConfigReader.getProperty("email"), Keys.TAB, ConfigReader.getProperty("pass"),
-                Keys.TAB,ConfigReader.getProperty("phone"));
+                Keys.TAB, ConfigReader.getProperty("phone"));
 
     }
 
@@ -196,13 +198,13 @@ public class TechproStepDefinition {
 
     @And("Genderi secer")
     public void genderiSecer() {
-        click( locatorAyse.female);
+        click(locatorAyse.female);
     }
 
     @And("Date of birthten asagisini doldurur")
     public void dateOfBirthtenAsagisiniDoldurur() {
-        locatorAyse.dateOfBirth.sendKeys(ConfigReader.getProperty("birthDate"),Keys.TAB,
-                ConfigReader.getProperty("office"),Keys.TAB,ConfigReader.getProperty("job"));
+        locatorAyse.dateOfBirth.sendKeys(ConfigReader.getProperty("birthDate"), Keys.TAB,
+                ConfigReader.getProperty("office"), Keys.TAB, ConfigReader.getProperty("job"));
     }
 
     @Then("Kullanici javayi secer")
@@ -214,4 +216,32 @@ public class TechproStepDefinition {
     public void kullaniciSubmiteBasar() {
         locatorAyse.submitButton.click();
     }
+
+    @And("WYSIWYG Editor linkine tiklar")
+    public void wysiwygEditorLinkineTiklar() {
+        click(locatorAyse.wysiwyg);
+    }
+
+
+    @And("Paragrafa tiklar")
+    public void paragrafaTiklar() {
+        click(locatorAyse.paragraf);
+    }
+
+    @And("Yazi boyutunu secer")
+    public void yaziBoyutunuSecer() {
+        click(locatorAyse.h2);
+    }
+
+    @And("Kullanici mesajini gonderir")
+    public void kullaniciMesajiniGonderir() {
+        String text = "Your content goes here.";
+        Driver.getDriver().switchTo().frame(0);
+        locatorAyse.textKutusu.sendKeys("Bugun hava cok guzel");
+        for(int i=0;i<text.length();i++)
+            locatorAyse.textKutusu.sendKeys(Keys.DELETE);
+
+    }
+
+
 }

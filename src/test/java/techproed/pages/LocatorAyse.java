@@ -1,6 +1,6 @@
 package techproed.pages;
 
-import org.checkerframework.checker.index.qual.PolyUpperBound;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -56,6 +56,10 @@ public class LocatorAyse {
     public WebElement dataTable;
     @FindBy (xpath = "//*[@id='table1']/tbody/tr[4]/td[6]/a[2]")
     public WebElement delete4;
+    @FindBy (xpath = "//*[@id='table1']")
+    public WebElement table1;
+    @FindBy (xpath = "//*[@id='table2']")
+    public WebElement table2;
 
     @FindBy (xpath = "//*[@id='table2']/tbody/tr[1]/td[2]")
     public WebElement John;
@@ -76,5 +80,17 @@ public class LocatorAyse {
 
     @FindBy (xpath = "//button[@type='submit']")
     public WebElement submitButton;
+
+    @FindBy (linkText = "WYSIWYG Editor")
+    public WebElement wysiwyg;
+    @FindBy (xpath ="//body[@id='tinymce']")
+    public WebElement textKutusu;
+    @FindBy (xpath ="//span[text()='Paragraph']")
+    public WebElement paragraf;
+    @FindBy (xpath ="//h2")
+    public WebElement h2;
+
+
+
 
 }

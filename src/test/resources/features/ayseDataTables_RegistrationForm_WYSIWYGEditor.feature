@@ -1,7 +1,9 @@
 Feature: US01 Test Techproeducation sayfasi
 
-  Scenario: TC01 Sortable Data Tables testi
+  Background:Test Center Techpro sayfasi
     Given kullanici_testCenterTechPro_sayfasina_gider
+
+  Scenario: TC01 Sortable Data Tables testi
     And Kullanici data table linkine tiklar
     And Sayfa basina gider
     But Kullanici 2 sn bekler
@@ -14,13 +16,12 @@ Feature: US01 Test Techproeducation sayfasi
     And Kullanici 2 sn bekler
     Then John ismini siler
     But Kullanici 2 sn bekler
-    Then John isminin silinidigini kontrol eder
+    Then John isminin silindigini kontrol eder
     But Kullanici 2 sn bekler
     And Kullanici sayfayi kapatir
 
 
   Scenario: TC02 Registration Formu
-    Given kullanici_testCenterTechPro_sayfasina_gider
     And Registration form linkine tiklar
     And Sayfa basina gider
     Then First nameden Gender e kadar doldurur
@@ -35,3 +36,11 @@ Feature: US01 Test Techproeducation sayfasi
     And Kullanici sayfayi kapatir
 
 
+  Scenario: TC03 WYSIWYG Editor Testi
+    And  WYSIWYG Editor linkine tiklar
+    And Sayfa basina gider
+    And Paragrafa tiklar
+    And Yazi boyutunu secer
+    And Kullanici 2 sn bekler
+    And Kullanici mesajini gonderir
+    And Kullanici sayfayi kapatir
