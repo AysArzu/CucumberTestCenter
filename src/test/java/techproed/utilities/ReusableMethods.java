@@ -256,7 +256,7 @@ public class ReusableMethods {
             e.printStackTrace();
         }
     }
-}
+
 
 
     public static void selectFromList( String textFromList) {
@@ -269,3 +269,4 @@ public class ReusableMethods {
         Driver.getDriver().findElement(By.xpath("(//a[text()='delete'])["+sayi+"]"));
     }
 }
+
