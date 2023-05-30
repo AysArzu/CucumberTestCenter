@@ -258,7 +258,8 @@ public class ReusableMethods {
     }
 
 
-
+//Alttaki uc method sadce bu site icin gecerli Locate'ler degistigi icin baska sitede kullanilmaz
+    //Dinamik olsun diye bu sekilde yaptim
     public static void selectFromList( String textFromList) {
         Driver.getDriver().findElement(By.xpath("//div[@id='myCountryautocomplete-list']//div[.='" + textFromList + "']")).click();
     }
